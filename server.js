@@ -18,11 +18,8 @@ export function createApp({ publicDir = resolve('public') } = {}) {
   const root = resolve(publicDir);
   const app = express();
 
-  // Middlewares generales
   app.use(cors());
   app.use(express.json());
-
-  // Middleware de seguridad contra Path Traversal
   app.use((req, res, next) => {
     let pathname;
     try {
@@ -47,11 +44,6 @@ export function createApp({ publicDir = resolve('public') } = {}) {
     next();
   });
 
-  // ==========================================
-  // RUTAS DE AUTENTICACIÓN
-  // ==========================================
-
-  // Endpoint para el registro de usuarios
   app.post('/registrar', async (req, res) => {
     try {
       const { username, password, role } = req.body || {};
@@ -79,7 +71,6 @@ export function createApp({ publicDir = resolve('public') } = {}) {
     }
   });
 
-  // Endpoint para el login de usuarios
   app.post('/login', async (req, res) => {
     try {
       const { username, password } = req.body || {};
@@ -107,7 +98,6 @@ export function createApp({ publicDir = resolve('public') } = {}) {
     }
   });
 
-  // Endpoint para validar el token y obtener la información del usuario actual
   app.get('/usuario-actual', authenticateToken, (req, res) => {
     res.status(200).json({
       message: 'Token válido',
@@ -115,7 +105,6 @@ export function createApp({ publicDir = resolve('public') } = {}) {
     });
   });
 
-  // Endpoint o Ruta de ejemplo para un recurso protegido (según el script del usuario)
   app.get('/recurso-protegido', authenticateToken, (req, res) => {
     res.status(200).json({
       message: `Bienvenido al recurso protegido, ${req.user.username}!`,
@@ -224,12 +213,8 @@ export function createApp({ publicDir = resolve('public') } = {}) {
     }
   });
 
-  // ==========================================
-  // SERVIR ARCHIVOS ESTÁTICOS Y SPA FALLBACK
-  // ==========================================
   app.use(express.static(root));
 
-  // SPA fallback para rutas no-API que soliciten páginas
   app.use((req, res, next) => {
     if (req.method !== 'GET') {
       return next();
@@ -240,9 +225,6 @@ export function createApp({ publicDir = resolve('public') } = {}) {
   return app;
 }
 
-/**
- * Función compatible con la suite de pruebas existente
- */
 export function createStaticServer({ publicDir }) {
   const app = createApp({ publicDir });
   return createServer(app);
@@ -258,6 +240,5 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   });
 }
 
-// Instancia por defecto para que Vercel la ejecute como Serverless Function
 const app = createApp({ publicDir: resolve('public') });
 export default app;
