@@ -1,26 +1,19 @@
 export const catalogs = {
   modalities: ['Trabajo de grado', 'Diplomado de profundización', 'Semillero'],
   faculties: [
-    // Facultad de Educación
     'Educación — Licenciatura en Educación Física, Recreación y Deporte',
     'Educación — Licenciatura en Educación Infantil',
     'Educación — Licenciatura en Lenguas Modernas con Énfasis en Inglés y Francés',
-    // Facultad de Ciencias Humanas y Sociales
     'Ciencias Humanas y Sociales — Programa de Psicología',
-    // Facultad de Arquitectura, Artes y Diseño
     'Arquitectura, Artes y Diseño — Programa de Arquitectura',
-    // Facultad de Ciencias Administrativas y Contables
     'Ciencias Administrativas y Contables — Administración de Negocios',
     'Ciencias Administrativas y Contables — Administración del Comercio Internacional',
     'Ciencias Administrativas y Contables — Contaduría Pública',
-    // Facultad de Derecho y Ciencias Políticas
     'Derecho y Ciencias Políticas — Programa de Derecho',
     'Derecho y Ciencias Políticas — Gobierno y Relaciones Internacionales',
-    // Facultad de Ciencias de la Salud
     'Ciencias de la Salud — Programa de Fisioterapia',
     'Ciencias de la Salud — Programa de Fonoaudiología',
     'Ciencias de la Salud — Programa de Bacteriología y Laboratorio Clínico',
-    // Facultad de Ingenierías
     'Ingenierías — Ingeniería Industrial',
     'Ingenierías — Ingeniería Química',
     'Ingenierías — Ingeniería Multimedia',
