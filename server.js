@@ -257,3 +257,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     console.log(`Servidor escuchando en http://localhost:${port}`);
   });
 }
+
+// Instancia por defecto para que Vercel la ejecute como Serverless Function
+const app = createApp({ publicDir: resolve('public') });
+export default app;
