@@ -30,7 +30,7 @@ const state = {
   notice: '',
   user: null,
   authTab: 'login',
-  selectedRole: null, // 'estudiante' | 'docente'
+  selectedRole: null,
 };
 let storageAvailable = loaded.storageAvailable;
 let projectStorageMode = 'local';
@@ -367,23 +367,18 @@ function renderProjectDetail(projectId = state.selectedProjectId) {
   const metrics = calculateMetrics([project]);
   byId('detail-session-count').textContent = String(metrics.sessions);
   byId('detail-hours').textContent = String(metrics.hours);
-
   const esEstudiante = state.user?.role === 'estudiante';
-
-  // Mostrar/ocultar controles según el rol
   const editProjBtn = byId('edit-project-button');
   const deleteProjBtn = byId('delete-project-button');
   const newSessionBtn = byId('new-session-button');
   if (editProjBtn) editProjBtn.hidden = esEstudiante;
   if (deleteProjBtn) deleteProjBtn.hidden = esEstudiante;
   if (newSessionBtn) newSessionBtn.hidden = esEstudiante;
-
   const sessions = [...project.sessions].sort((left, right) => right.date.localeCompare(left.date));
   const rows = sessions.map((session) => {
     const row = document.createElement('tr');
     row.className = 'session-card';
 
-    // Columna de acciones diferente según el rol
     const actionsHtml = esEstudiante
       ? `<td data-label="Acciones"><div class="session-actions">
            <button class="button ${session.studentSignature ? 'button-quiet' : 'button-primary'} button-sm session-action"
@@ -420,15 +415,12 @@ function renderProjectDetail(projectId = state.selectedProjectId) {
 
 function renderApp() {
   const isAuthenticated = Boolean(state.user && localStorage.getItem('token'));
-
-  // Indicador de usuario en la cabecera
   const userBadge = byId('user-badge');
   const newProjectBtn = byId('new-project-button');
   const navProjectFormBtn = byId('nav-project-form');
   const esEstudianteGlobal = isAuthenticated && state.user?.role === 'estudiante';
 
   if (userBadge) userBadge.hidden = !isAuthenticated;
-  // Estudiantes no pueden crear ni gestionar proyectos
   if (newProjectBtn) newProjectBtn.hidden = !isAuthenticated || esEstudianteGlobal;
   if (navProjectFormBtn) navProjectFormBtn.hidden = esEstudianteGlobal;
 
@@ -761,10 +753,6 @@ byId('cancel-session-button').addEventListener('click', () => {
   focusSessionLog();
 });
 
-// ========================================================
-// FIRMA DE ESTUDIANTE (solo rol estudiante)
-// ========================================================
-
 let signingSessionId = null;
 
 function closeStudentSignatureForm() {
@@ -891,10 +879,6 @@ if (studentSignatureForm) {
 
 byId('cancel-signature-button')?.addEventListener('click', closeStudentSignatureForm);
 
-// ========================================================
-// SELECCIÓN DE ROL
-// ========================================================
-
 const ROLE_LABELS = {
   estudiante: {
     eyebrow: 'Portal de acceso · Estudiante',
@@ -910,16 +894,10 @@ const ROLE_LABELS = {
 
 function selectRole(role) {
   state.selectedRole = role;
-
-  // Actualizar estado visual de las tarjetas
   byId('role-estudiante')?.setAttribute('aria-pressed', String(role === 'estudiante'));
   byId('role-docente')?.setAttribute('aria-pressed', String(role === 'docente'));
-
-  // Mostrar paso de formularios y ocultar selección
   byId('role-selection-step').hidden = true;
   byId('auth-forms-step').hidden = false;
-
-  // Ajustar textos según el rol
   const labels = ROLE_LABELS[role] ?? ROLE_LABELS.docente;
   const eyebrowEl = byId('auth-role-eyebrow');
   const titleEl = byId('auth-forms-title');
@@ -928,14 +906,11 @@ function selectRole(role) {
   if (titleEl) titleEl.textContent = labels.title;
   if (descEl) descEl.textContent = labels.desc;
 
-  // Sincronizar input oculto de rol en el formulario de registro
   const regRoleInput = byId('reg-role');
   if (regRoleInput) regRoleInput.value = role;
 
-  // Ir a la pestaña de login por defecto
   switchAuthTab('login');
 
-  // Foco accesible
   byId('log-username')?.focus();
 }
 
@@ -954,9 +929,6 @@ byId('role-estudiante')?.addEventListener('click', () => selectRole('estudiante'
 byId('role-docente')?.addEventListener('click', () => selectRole('docente'));
 byId('btn-back-role')?.addEventListener('click', backToRoleSelection);
 
-// ========================================================
-// LÓGICA DE AUTENTICACIÓN (LOGIN, REGISTRO Y RECURSO PROTEGIDO)
-// ========================================================
 const API_URL = window.location.origin;
 
 function setAuthMessage(text, type = 'info') {
@@ -1008,7 +980,6 @@ function switchAuthTab(tab) {
   if (toFocus) toFocus.focus();
 }
 
-// 1. Manejo del formulario de registro (inspirado en el script del usuario)
 const registerForm = byId('formulario-registro');
 if (registerForm) {
   registerForm.addEventListener('submit', async (e) => {
@@ -1038,11 +1009,8 @@ if (registerForm) {
       if (res.ok) {
         setAuthMessage(data.message || 'Usuario registrado correctamente', 'success');
         registerForm.reset();
-        // Restaurar el rol en el input oculto tras el reset
         const regRoleInput = byId('reg-role');
         if (regRoleInput) regRoleInput.value = role;
-
-        // Autocompletar usuario en login y cambiar a la pestaña de login
         const loginUserInput = byId('log-username') || byId('login-username');
         if (loginUserInput) loginUserInput.value = username;
 
@@ -1061,7 +1029,6 @@ if (registerForm) {
   });
 }
 
-// 2. Manejo del formulario de login (inspirado en el script del usuario)
 const loginForm = byId('formulario-login');
 if (loginForm) {
   loginForm.addEventListener('submit', async (e) => {
@@ -1090,10 +1057,8 @@ if (loginForm) {
 
       const data = await res.json();
       if (res.ok) {
-        // Almacenar token y datos del usuario
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user || { username }));
-
         state.user = data.user || { username };
         setAuthMessage(data.message || '¡Inicio de sesión exitoso!', 'success');
         state.notice = `¡Bienvenido/a, ${state.user.username}!`;
@@ -1121,7 +1086,6 @@ if (loginForm) {
   });
 }
 
-// 3. Manejo del botón para acceder al recurso protegido (inspirado en el script del usuario)
 const botonAccesoProtegido = byId('acceso-protegido');
 if (botonAccesoProtegido) {
   botonAccesoProtegido.addEventListener('click', async () => {
@@ -1160,7 +1124,6 @@ if (botonAccesoProtegido) {
   });
 }
 
-// 4. Cerrar sesión
 const logoutBtn = byId('logout-button');
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
@@ -1176,7 +1139,6 @@ if (logoutBtn) {
   });
 }
 
-// 5. Pestañas y enlaces rápidos de autenticación
 byId('tab-login')?.addEventListener('click', () => switchAuthTab('login'));
 byId('tab-registro')?.addEventListener('click', () => switchAuthTab('registro'));
 byId('switch-to-register')?.addEventListener('click', () => switchAuthTab('registro'));
@@ -1231,7 +1193,6 @@ async function initSession() {
       setAuthMessage('Su sesión anterior expiró. Por favor ingrese de nuevo.', 'info');
     }
   } catch (error) {
-    // Si el servidor aún no responde o hay pérdida momentánea de conexión
     if (storedUser) {
       state.user = storedUser;
       projectStorageMode = 'unavailable';
