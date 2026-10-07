@@ -6,12 +6,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const USERS_FILE_PATH = resolve('./data/usuarios.json');
 
-// Memoria volátil de respaldo por si el entorno no permite escribir en disco
 let inMemoryUsers = [
   {
     id: 'user-demo-1',
     username: 'docente',
-    // Hash bcrypt para la contraseña "docente123"
     password: '$2a$10$vI0g7d3K7pM6uN0hSg4UfO2f7Wn8U7J.Qz3F8dE9s0P9yB5cK1dGe',
     createdAt: new Date().toISOString(),
   },
@@ -78,10 +76,6 @@ export async function saveLocalUsers(users) {
   }
 }
 
-/**
- * Registra un nuevo usuario hasheando la contraseña con bcrypt.
- * Si Supabase está disponible, intenta registrar allí; de lo contrario, usa el almacén local.
- */
 export async function registerUser({ username, password, role = 'docente' }) {
   if (!username || !password) {
     throw new Error('El nombre de usuario y contraseña son requeridos');
@@ -104,7 +98,7 @@ export async function registerUser({ username, password, role = 'docente' }) {
 
   const supabase = getSupabaseClient();
   if (supabase) {
-    // Registro en Supabase
+
     const { data, error } = await supabase
       .from('usuarios')
       .insert([{ username: cleanUsername, password: hashedPassword, role: cleanRole }]);
@@ -117,7 +111,6 @@ export async function registerUser({ username, password, role = 'docente' }) {
     return { username: cleanUsername, role: cleanRole };
   }
 
-  // Registro en almacenamiento local
   const users = await getLocalUsers();
   const existing = users.find(
     (u) => u.username.toLowerCase() === cleanUsername.toLowerCase()
@@ -143,9 +136,6 @@ export async function registerUser({ username, password, role = 'docente' }) {
   return { username: cleanUsername, role: cleanRole };
 }
 
-/**
- * Autentica un usuario verificando la contraseña con bcrypt.
- */
 export async function authenticateUser({ username, password }) {
   if (!username || !password) {
     return null;
