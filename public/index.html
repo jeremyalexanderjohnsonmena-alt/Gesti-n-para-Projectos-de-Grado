@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestión de asesorías de proyectos de grado</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <div>
+        <p class="eyebrow">Universidad de San Buenaventura · Cartagena</p>
+        <h1>Asesorías de proyectos de grado</h1>
+        <p class="subtitle">Seguimiento académico y bitácora de tutorías</p>
+      </div>
+      <div class="header-actions">
+        <div id="user-badge" class="user-badge" hidden>
+          <span class="user-avatar" aria-hidden="true">👤</span>
+          <div class="user-badge-details">
+            <span class="user-badge-role">Sesión activa</span>
+            <span class="user-badge-name" id="user-display-name">Docente</span>
+          </div>
+          <button class="button button-quiet button-sm" id="logout-button" type="button">Cerrar sesión</button>
+        </div>
+        <button class="button button-primary" id="new-project-button" type="button">Nuevo proyecto</button>
+      </div>
+    </header>
+    <nav class="primary-nav" id="main-nav" aria-label="Vistas principales">
+      <button class="nav-link is-active" id="nav-overview" type="button" aria-current="page">Panel general</button>
+      <button class="nav-link" id="nav-project-form" type="button">Formulario de proyecto</button>
+      <button class="nav-link" id="nav-auth" type="button">Iniciar sesión / Registro</button>
+    </nav>
+    <div id="notice-area" class="notice-area" role="status" aria-live="polite" aria-atomic="true"></div>
+    <div id="error-area" class="notice-area notice-error" role="alert" aria-live="assertive" aria-atomic="true"></div>
+    <main id="main-content">
+      <section id="overview-view" class="view" aria-labelledby="overview-title">
+        <div class="view-heading">
+          <p class="eyebrow">Espacio de trabajo docente</p>
+          <h2 id="overview-title">Panel general</h2>
+          <p class="subtitle">Proyectos en curso y acompañamiento registrado.</p>
+        </div>
+        <div class="overview-layout">
+          <section class="surface project-section" aria-labelledby="projects-title">
+            <div class="section-heading">
+              <div><p class="eyebrow">Seguimiento</p><h3 id="projects-title">Proyectos recientes</h3></div>
+              <span class="section-count" id="project-count-label">0 proyectos</span>
+            </div>
+            <form class="filter-row" id="project-filters" aria-label="Filtrar proyectos">
+              <div class="field">
+                <label for="filter-modality">Modalidad</label>
+                <select id="filter-modality" name="modality">
+                  <option value="">Todas las modalidades</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="filter-faculty">Facultad</label>
+                <select id="filter-faculty" name="faculty">
+                  <option value="">Todas las facultades</option>
+                </select>
+              </div>
+            </form>
+            <div id="project-list" class="project-list" aria-live="polite">
+              <div class="empty-state" id="projects-empty">
+                <span class="empty-mark" aria-hidden="true">01</span>
+                <h4>Aún no hay proyectos para mostrar</h4>
+                <p>Cuando registre un proyecto, aparecerá aquí con su modalidad, facultad, director y última tutoría.</p>
+              </div>
+            </div>
+          </section>
+          <aside class="overview-aside" aria-labelledby="summary-title">
+            <p class="eyebrow">Resumen del período</p>
+            <h3 id="summary-title">Acompañamiento</h3>
+            <div class="metric-list" id="metrics">
+              <div class="metric-card"><span>Proyectos</span><strong id="metric-projects">0</strong></div>
+              <div class="metric-card"><span>Tutorías registradas</span><strong id="metric-sessions">0</strong></div>
+              <div class="metric-card metric-accent"><span>Horas acompañadas</span><strong id="metric-hours">0</strong></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <section id="project-form-view" class="view" aria-labelledby="project-form-title" hidden>
+        <div class="view-heading">
+          <p class="eyebrow">Ficha académica</p>
+          <h2 id="project-form-title">Nuevo proyecto</h2>
+          <p class="subtitle">Registre el trabajo y las personas que participan en su dirección.</p>
+        </div>
+        <form class="surface form-surface" id="project-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="project-modality">Modalidad de grado <span class="required">*</span></label>
+              <select id="project-modality" name="modality" required aria-describedby="project-modality-error">
+                <option value="">Seleccione una modalidad</option>
+              </select>
+              <span class="field-error" id="project-modality-error" aria-live="polite"></span>
+            </div>
+            <div class="field field-wide">
+              <label for="project-title">Título del trabajo de grado <span class="required">*</span></label>
+              <input id="project-title" name="title" type="text" maxlength="200" required aria-describedby="project-title-error">
+              <span class="field-error" id="project-title-error" aria-live="polite"></span>
+            </div>
+            <div class="field field-wide">
+              <label for="project-students">Estudiantes <span class="required">*</span></label>
+              <select id="project-students" name="students" multiple size="4" required aria-describedby="project-students-help project-students-error">
+              </select>
+              <span class="field-help" id="project-students-help">Seleccione uno o varios estudiantes; en computador, use Ctrl o ⌘ para elegir varios.</span>
+              <span class="field-error" id="project-students-error" aria-live="polite"></span>
+            </div>
+            <div class="field field-wide">
+              <label for="project-student-accounts">Cuentas de estudiantes <span class="required">*</span></label>
+              <select id="project-student-accounts" name="studentUsernames" multiple size="4" required aria-describedby="project-student-accounts-help project-student-accounts-error"></select>
+              <span class="field-help" id="project-student-accounts-help">Selecciona las cuentas registradas que podrán consultar este proyecto. Si no aparece una cuenta, el estudiante debe registrarse primero con rol de estudiante.</span>
+              <span class="field-error" id="project-student-accounts-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="project-director">Director <span class="required">*</span></label>
+              <select id="project-director" name="director" required aria-describedby="project-director-error">
+                <option value="">Seleccione un director</option>
+              </select>
+              <span class="field-error" id="project-director-error" aria-live="polite"></span>
+            </div>
+            <div class="field">
+              <label for="project-co-director">Co-director <span class="optional">Opcional</span></label>
+              <select id="project-co-director" name="coDirector">
+                <option value="">Sin co-director</option>
+              </select>
+            </div>
+            <div class="field field-wide">
+              <label for="project-faculty">Facultad <span class="required">*</span></label>
+              <select id="project-faculty" name="faculty" required aria-describedby="project-faculty-error">
+                <option value="">Seleccione una facultad</option>
+              </select>
+              <span class="field-error" id="project-faculty-error" aria-live="polite"></span>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="button button-quiet" id="cancel-project-button" type="button">Cancelar</button>
+            <button class="button button-primary" type="submit">Guardar proyecto</button>
+          </div>
+        </form>
+      </section>
+      <section id="project-detail-view" class="view" aria-labelledby="project-detail-title" hidden>
+        <div class="view-heading detail-heading">
+          <div>
+            <p class="eyebrow">Ficha del proyecto</p>
+            <h2 id="project-detail-title">Seleccione un proyecto</h2>
+            <p class="subtitle" id="project-detail-meta">Modalidad · Facultad</p>
+          </div>
+          <div class="heading-actions">
+            <button class="button button-quiet" id="print-report-button" type="button">Informe final PDF</button>
+            <button class="button button-quiet" id="edit-project-button" type="button">Editar proyecto</button>
+            <button class="button button-danger" id="delete-project-button" type="button">Eliminar proyecto</button>
+          </div>
+        </div>
+        <div class="detail-layout">
+          <aside class="surface detail-card" aria-labelledby="participants-title">
+            <p class="eyebrow">Contexto académico</p>
+            <h3 id="participants-title">Participantes</h3>
+            <dl class="detail-list" id="project-participants">
+              <div><dt>Estudiantes</dt><dd id="detail-students">Por asignar</dd></div>
+              <div><dt>Director</dt><dd id="detail-director">Por asignar</dd></div>
+              <div><dt>Co-director</dt><dd id="detail-co-director">No registrado</dd></div>
+            </dl>
+            <div class="detail-totals" id="project-session-metrics">
+              <div><strong id="detail-session-count">0</strong><span>Tutorías</span></div>
+              <div><strong id="detail-hours">0</strong><span>Horas</span></div>
+            </div>
+          </aside>
+          <div class="detail-main">
+            <section class="surface log-section" aria-labelledby="session-log-title">
+              <div class="section-heading">
+                <div><p class="eyebrow">Seguimiento cronológico</p><h3 id="session-log-title" tabindex="-1">Bitácora de tutorías</h3></div>
+                <button class="button button-primary" id="new-session-button" type="button" aria-controls="session-form-section" aria-expanded="false">Registrar tutoría</button>
+              </div>
+              <div class="table-scroll">
+                <table class="session-table" id="session-table">
+                  <caption class="visually-hidden">Sesiones de tutoría del proyecto</caption>
+                  <thead><tr><th scope="col">Fecha</th><th scope="col">Duración</th><th scope="col">Actividades realizadas</th><th scope="col">Compromisos</th><th scope="col">Acciones</th></tr></thead>
+                  <tbody id="session-list"><tr class="session-empty-row"><td colspan="5">Aún no hay tutorías registradas para este proyecto.</td></tr></tbody>
+                </table>
+              </div>
+            </section>
+            <section class="surface session-form-section" id="session-form-section" aria-labelledby="session-form-title" hidden>
+              <div class="section-heading"><div><p class="eyebrow" id="session-form-eyebrow">Nueva entrada</p><h3 id="session-form-title">Registrar tutoría</h3></div></div>
+              <form id="session-form" novalidate>
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="session-date">Fecha <span class="required">*</span></label>
+                    <input id="session-date" name="date" type="date" required aria-describedby="session-date-error">
+                    <span class="field-error" id="session-date-error" aria-live="polite"></span>
+                  </div>
+                  <div class="field">
+                    <label for="session-duration">Duración en horas <span class="required">*</span></label>
+                    <input id="session-duration" name="duration" type="number" min="0" max="24" step="any" inputmode="decimal" required aria-describedby="session-duration-error">
+                    <span class="field-error" id="session-duration-error" aria-live="polite"></span>
+                  </div>
+                  <div class="field field-wide">
+                    <label for="session-activities">Actividades realizadas <span class="required">*</span></label>
+                    <textarea id="session-activities" name="activities" rows="4" required aria-describedby="session-activities-error"></textarea>
+                    <span class="field-error" id="session-activities-error" aria-live="polite"></span>
+                  </div>
+                  <div class="field field-wide">
+                    <label for="session-commitments">Compromisos <span class="required">*</span></label>
+                    <textarea id="session-commitments" name="commitments" rows="4" required aria-describedby="session-commitments-error"></textarea>
+                    <span class="field-error" id="session-commitments-error" aria-live="polite"></span>
+                  </div>
+                  <div class="field field-wide">
+                    <label for="session-observations">Observaciones del director <span class="optional">Opcional</span></label>
+                    <textarea id="session-observations" name="observations" rows="3"></textarea>
+                  </div>
+                  <div class="field">
+                    <label for="session-student-signature">Firma / nombre de estudiantes <span class="optional">Opcional</span></label>
+                    <input id="session-student-signature" name="studentSignature" type="text">
+                  </div>
+                  <div class="field">
+                    <label for="session-director-signature">Firma / nombre de director <span class="optional">Opcional</span></label>
+                    <input id="session-director-signature" name="directorSignature" type="text">
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button class="button button-quiet" id="cancel-session-button" type="button">Cancelar</button>
+                  <button class="button button-primary" type="submit">Guardar tutoría</button>
+                </div>
+              </form>
+            </section>
+
+            <!-- Formulario de firma para estudiantes -->
+            <section class="surface session-form-section" id="student-signature-section" aria-labelledby="student-sig-title" hidden>
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Tutoría seleccionada</p>
+                  <h3 id="student-sig-title">Firmar tutoría</h3>
+                </div>
+              </div>
+              <p class="subtitle" style="margin-bottom: 20px;">
+                Registre su nombre como constancia de asistencia a esta sesión de tutoría.
+              </p>
+              <form id="student-signature-form" novalidate>
+                <div class="field">
+                  <label for="sig-student-id">Estudiante <span class="required">*</span></label>
+                  <select id="sig-student-id" name="studentId"></select>
+                </div>
+                <div class="field">
+                  <label for="sig-student-name">Tu nombre completo / firma <span class="required">*</span></label>
+                  <input id="sig-student-name" name="studentSignature" type="text"
+                    placeholder="Ej: Juan Pérez" required autocomplete="name">
+                  <span class="field-error" id="sig-student-error" aria-live="polite"></span>
+                </div>
+                <div class="form-actions">
+                  <button class="button button-quiet" id="cancel-signature-button" type="button">Cancelar</button>
+                  <button class="button button-primary" type="submit">✍ Guardar firma</button>
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+      <section id="auth-view" class="view" aria-labelledby="auth-title" hidden>
+        <div class="auth-wrapper">
+
+          <!-- ── PASO 1: selección de rol ── -->
+          <div id="role-selection-step">
+            <div class="view-heading text-center">
+              <p class="eyebrow">Portal de acceso</p>
+              <h2 id="auth-title">¿Cómo desea ingresar?</h2>
+              <p class="subtitle">Seleccione su perfil para continuar con el ingreso o registro.</p>
+            </div>
+            <div class="role-cards" role="group" aria-label="Selección de perfil">
+              <button class="role-card" id="role-estudiante" type="button" data-role="estudiante" aria-pressed="false">
+                <span class="role-card-icon" aria-hidden="true">🎓</span>
+                <strong class="role-card-title">Estudiante</strong>
+                <span class="role-card-desc">Consulta y seguimiento de tus proyectos de grado</span>
+              </button>
+              <button class="role-card" id="role-docente" type="button" data-role="docente" aria-pressed="false">
+                <span class="role-card-icon" aria-hidden="true">📋</span>
+                <strong class="role-card-title">Docente / Director</strong>
+                <span class="role-card-desc">Gestión, dirección y bitácora de tutorías</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ── PASO 2: formularios de autenticación ── -->
+          <div id="auth-forms-step" hidden>
+            <div class="view-heading text-center">
+              <button class="link-button role-back-btn" id="btn-back-role" type="button">← Cambiar perfil</button>
+              <p class="eyebrow" id="auth-role-eyebrow">Portal de acceso</p>
+              <h2 id="auth-forms-title">Ingreso y Registro</h2>
+              <p class="subtitle" id="auth-role-desc">Identifíquese para acceder al sistema.</p>
+            </div>
+
+            <div class="auth-tabs" role="tablist" aria-label="Opciones de autenticación">
+              <button class="auth-tab is-active" id="tab-login" type="button" role="tab" aria-selected="true" aria-controls="login">Iniciar Sesión</button>
+              <button class="auth-tab" id="tab-registro" type="button" role="tab" aria-selected="false" aria-controls="registro">Registro de Usuario</button>
+            </div>
+
+            <div class="surface auth-card">
+              <!-- Formulario de Iniciar Sesión -->
+              <div class="formulario-iniciar-sesion" id="login">
+                <div class="auth-card-header">
+                  <h3>Iniciar Sesión</h3>
+                  <p class="subtitle">Ingrese su usuario y contraseña para entrar al sistema</p>
+                </div>
+                <form id="formulario-login" novalidate>
+                  <div class="field">
+                    <label for="log-username">Usuario <span class="required">*</span></label>
+                    <input type="text" id="log-username" name="username" placeholder="Nombre de usuario" required autocomplete="username">
+                    <input type="hidden" id="login-username">
+                  </div>
+                  <div class="field">
+                    <label for="log-password">Contraseña <span class="required">*</span></label>
+                    <input type="password" id="log-password" name="password" placeholder="Contraseña" required autocomplete="current-password">
+                    <input type="hidden" id="login-password">
+                  </div>
+                  <div class="auth-actions">
+                    <button class="button button-primary button-block" id="btn-login" type="submit">Iniciar Sesión</button>
+                  </div>
+                  <p class="auth-switch-prompt">
+                    ¿No tiene una cuenta? <button type="button" class="link-button" id="switch-to-register">Registrarse aquí</button>
+                  </p>
+                </form>
+              </div>
+
+              <!-- Formulario de Registro -->
+              <div class="formulario-registrarse" id="registro" hidden>
+                <div class="auth-card-header">
+                  <h2>Registro de Usuario</h2>
+                  <p class="subtitle">Cree una cuenta para acceder a la gestión de asesorías</p>
+                </div>
+                <form id="formulario-registro" novalidate>
+                  <!-- El rol seleccionado se envía de forma oculta -->
+                  <input type="hidden" id="reg-role" name="role" value="">
+                  <div class="field">
+                    <label for="reg-username">Usuario <span class="required">*</span></label>
+                    <input type="text" id="reg-username" name="username" placeholder="Elija su usuario" required autocomplete="username">
+                  </div>
+                  <div class="field">
+                    <label for="reg-password">Contraseña <span class="required">*</span></label>
+                    <input type="password" id="reg-password" name="password" placeholder="Mínimo 4 caracteres" required autocomplete="new-password">
+                  </div>
+                  <div class="auth-actions">
+                    <button class="button button-primary button-block" id="btn-register" type="submit">Registrarse</button>
+                  </div>
+                  <p class="auth-switch-prompt">
+                    ¿Ya tiene una cuenta? <button type="button" class="link-button" id="switch-to-login">Iniciar sesión aquí</button>
+                  </p>
+                </form>
+              </div>
+
+              <!-- Mensaje de estado -->
+              <p id="mensaje" class="auth-status-message" aria-live="polite"></p>
+            </div>
+
+            <!-- Sección de Recurso Protegido -->
+            <div class="surface seccion-protegida" style="margin-top: 24px;">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Verificación JWT</p>
+                  <h3 style="font-size: 17px; margin-bottom: 4px;">Recurso Protegido</h3>
+                  <p class="subtitle" style="font-size: 13px;">Prueba la autenticación del token contra el endpoint seguro <code>GET /recurso-protegido</code>.</p>
+                </div>
+                <button class="button button-quiet button-sm" id="acceso-protegido" type="button">Acceder a Datos Protegidos</button>
+              </div>
+              <p id="mensaje-protegido" class="auth-status-message" aria-live="polite"></p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

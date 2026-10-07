@@ -1,0 +1,353 @@
+[
+  {
+    "id": "user-demo-1",
+    "username": "docente",
+    "password": "$2a$10$vI0g7d3K7pM6uN0hSg4UfO2f7Wn8U7J.Qz3F8dE9s0P9yB5cK1dGe",
+    "createdAt": "2026-10-06T01:58:40.891Z"
+  },
+  {
+    "id": "26eaaad9-dbd5-4781-9b35-e73d4f76caff",
+    "username": "tutor_1791251920979",
+    "password": "$2b$10$5ZtClKfPkiYmDmhR2C0CY.z/cuL0Y3D05ipTDZjpRQNRtezmZ20P.",
+    "createdAt": "2026-10-06T01:58:41.157Z"
+  },
+  {
+    "id": "b6e7581d-bd76-4aee-9104-77b8ca8af9f2",
+    "username": "login_test_1791251921448",
+    "password": "$2b$10$qDFWVgfocYVdudSNrWFtbuj15oUBG0z.e9W3nB3jQFejqXhc7z6CS",
+    "createdAt": "2026-10-06T01:58:41.578Z"
+  },
+  {
+    "id": "97cf2482-d1c6-479f-9445-402a90006eac",
+    "username": "token_test_1791251921716",
+    "password": "$2b$10$yEbmUne0elcMKoFUYVSr/.KHlUvKeRoCaGBA59Qn9uTrPQkV19T3S",
+    "createdAt": "2026-10-06T01:58:41.866Z"
+  },
+  {
+    "id": "8d85033d-2c58-4743-89b7-005b0b5d125a",
+    "username": "current_user_1791251921997",
+    "password": "$2b$10$vo62NPVzrH0QCcXmN4wBluPFj.lks2OYoVqtjre.7q7k1zQX8v0ee",
+    "createdAt": "2026-10-06T01:58:42.118Z"
+  },
+  {
+    "id": "a2eda98d-88ce-478e-8a2c-0f8f5b6351ef",
+    "username": "tutor_1791251937862",
+    "password": "$2b$10$nBNPKC0bwMo4EGHHXFd4Heg8TCO5RkYcYqUs.McvAkEkb/QEyRWle",
+    "createdAt": "2026-10-06T01:58:58.047Z"
+  },
+  {
+    "id": "48762fcd-13d1-4001-8401-c41087279c34",
+    "username": "login_test_1791251938317",
+    "password": "$2b$10$oivN.V80AIGpCz.TULP9fOgwrk9y/T7fu0j7EmwMtHWDWD6N5B/1O",
+    "createdAt": "2026-10-06T01:58:58.443Z"
+  },
+  {
+    "id": "f85b10b4-e4a1-4be5-9d0e-a8fc0dbc3fb3",
+    "username": "token_test_1791251938592",
+    "password": "$2b$10$F0U51cRh14Awg1.PuAh.WuI3NXbTiwNwcyXQJ2Jl6KFWJYNSLGmDC",
+    "createdAt": "2026-10-06T01:58:58.730Z"
+  },
+  {
+    "id": "ee42251e-2650-40c2-901f-835ed6c198d8",
+    "username": "current_user_1791251938859",
+    "password": "$2b$10$g12aJ69scZV0nd4jxlMtkeGz3/oZDrEz3k6GRoBF/G7/rlRDDueqa",
+    "createdAt": "2026-10-06T01:58:58.987Z"
+  },
+  {
+    "id": "36a5b54b-cd46-45c5-907d-11c51e052b62",
+    "username": "tutor_1791252093908",
+    "password": "$2b$10$Zw4QAcHNUfiCw1mriQpgTee4mM8QNacW4Yp7KmS1t58sAgxS.cj.i",
+    "createdAt": "2026-10-06T02:01:34.072Z"
+  },
+  {
+    "id": "0d1707aa-ff9d-4398-8eaa-b0e715dbc2e5",
+    "username": "login_test_1791252094357",
+    "password": "$2b$10$ZwpGOns30t2Oo7gcWh0KEeUXNJX2J6U0ueYsDgqPXqK/tHHZY9cda",
+    "createdAt": "2026-10-06T02:01:34.494Z"
+  },
+  {
+    "id": "d606aa3c-dc88-496e-b4da-4e11bff88259",
+    "username": "token_test_1791252094635",
+    "password": "$2b$10$F4/B7I/sQGftSew5bLZqGeF.bkadxXoom2NOcKFib4qLKKCfP5GDG",
+    "createdAt": "2026-10-06T02:01:34.776Z"
+  },
+  {
+    "id": "abbc1543-f685-43bb-b5a8-d6aebe7f5395",
+    "username": "current_user_1791252094905",
+    "password": "$2b$10$rD8Zxk04vbbwsxgUoZ5mhO7ILFJuwLnkGKebCM/1TZxpw5.VIfhr2",
+    "createdAt": "2026-10-06T02:01:35.026Z"
+  },
+  {
+    "id": "ff93b7fa-88b8-4576-b42a-39486a899d77",
+    "username": "profesor_prueba",
+    "password": "$2b$10$IGURFV0GgQau3QrZ/IJGJu04LKybxNJpLN/3mj5By4a89wCS0cuyu",
+    "createdAt": "2026-10-06T02:02:25.145Z"
+  },
+  {
+    "id": "9b579d2e-1818-4b82-907b-65e3bfbdd57f",
+    "username": "tutor_1791252222702",
+    "password": "$2b$10$6uryKeRUomziQT82KRKn2O70SrVef8o7Yr2R92.Ljia1QWXKWNC5.",
+    "createdAt": "2026-10-06T02:03:42.892Z"
+  },
+  {
+    "id": "26d02e3d-7003-48bb-962b-bc03b09ec1cf",
+    "username": "login_test_1791252223171",
+    "password": "$2b$10$AT/OQnyGjgMkZ9iGrWF7nO21yvdKPleVOiD4DSJq1gqvL91YDmfwy",
+    "createdAt": "2026-10-06T02:03:43.312Z"
+  },
+  {
+    "id": "bdf0fca6-9b1e-4b52-8818-cace58c40cf3",
+    "username": "token_test_1791252223468",
+    "password": "$2b$10$OkTsgjQuzR8Ed.7HSIBEhu3sVSuyqQnpde62uWHqnEwSEc25GHxRu",
+    "createdAt": "2026-10-06T02:03:43.600Z"
+  },
+  {
+    "id": "7664f8db-461a-44ca-8826-b1fa9a111d28",
+    "username": "current_user_1791252223722",
+    "password": "$2b$10$kJwu8QD0lPL2DCK8DqAXJO.d1W/KPlaehG0vPjqtlVO0.XhwR.Vra",
+    "createdAt": "2026-10-06T02:03:43.851Z"
+  },
+  {
+    "id": "f3eb9e7b-cefa-463a-b645-68c48c661c71",
+    "username": "jongobulo",
+    "password": "$2b$10$FNCnNGLkGRU7I8wzXQ3OP.f.1POHTrpizqPV9BIAZF9SOMynGoxLu",
+    "createdAt": "2026-10-06T02:12:43.798Z"
+  },
+  {
+    "id": "ee2076fe-28fa-4bbf-8da5-d88d5ef297af",
+    "username": "japino12",
+    "password": "$2b$10$X1OM341LSOP9dgg1lBnnNutinA2dGs/Ky.Tg2kixlMpyb0aL.K7tW",
+    "createdAt": "2026-10-06T02:36:36.244Z"
+  },
+  {
+    "id": "6f39d52d-af00-4d63-85af-0b95410708ee",
+    "username": "japino13",
+    "password": "$2b$10$tWf4N.YtHHStsw8I2lMYnOD0Wr2hLIob/t4St5epAYe8HtZhEksU6",
+    "role": "docente",
+    "createdAt": "2026-10-06T02:47:14.080Z"
+  },
+  {
+    "id": "d521b120-fd1d-4324-8e7e-2f14d591825c",
+    "username": "japino14",
+    "password": "$2b$10$pt/90LLy9Q78dVbQznuDued8isoyh9Q9k.ANKW5cJCnBMRishTWjO",
+    "role": "estudiante",
+    "createdAt": "2026-10-06T02:49:28.521Z"
+  },
+  {
+    "id": "90cb197a-d7fb-4fcc-b40d-5f4eadf331d4",
+    "username": "japino15",
+    "password": "$2b$10$Eb8yQoJmJqaAmIixR4Yk1eHbJ0gw8oaCQbONaNbfniXnHr/Ss8liK",
+    "role": "docente",
+    "createdAt": "2026-10-06T03:09:13.201Z"
+  },
+  {
+    "id": "a911b3f1-f258-4b98-954b-509281594cea",
+    "username": "japino16",
+    "password": "$2b$10$LNwaGlya8x.arh9EyPURq.8.JX75fYDgpGE4o7oyNem5ZAp.gWA/W",
+    "role": "estudiante",
+    "createdAt": "2026-10-06T03:15:32.744Z"
+  },
+  {
+    "id": "ae968417-836b-494a-903b-9981bb2d79ee",
+    "username": "profesor1",
+    "password": "$2b$10$COx1C8ppbis/wkN1lyTl/Oa7y0DW8r.lrzgdEyayqymQdm2Pe7/ma",
+    "role": "docente",
+    "createdAt": "2026-10-06T03:18:56.804Z"
+  },
+  {
+    "id": "9017f84d-a06b-49db-ba52-19deb0666085",
+    "username": "estudiante1",
+    "password": "$2b$10$Z1XgZVsOqaDlD4N0m6TFtuEuR.fHaToccGN7qnKRrc5RKLSGNuuRm",
+    "role": "estudiante",
+    "createdAt": "2026-10-06T03:24:31.846Z"
+  },
+  {
+    "id": "6cfd2882-d418-4eb7-b6d4-f2ed924775cd",
+    "username": "estudiante2",
+    "password": "$2b$10$ylou7uBiFlLBHI3tSS9TWuDRNlGXEuTugqFfeRziQRexDY7g3sNiW",
+    "role": "estudiante",
+    "createdAt": "2026-10-06T03:25:19.951Z"
+  },
+  {
+    "id": "b5bed6be-5655-4691-a47b-0e33487d6b30",
+    "username": "tutor_1791328011282",
+    "password": "$2b$10$xIM1TcrfxjAVUWV.Je7m4O3f9DurSEzM31XSn9cEfqe/cTwZ7S//q",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:06:51.359Z"
+  },
+  {
+    "id": "77465158-60bc-4bcd-bd16-64ff1cca0f9c",
+    "username": "login_test_1791328011494",
+    "password": "$2b$10$Sij6HNVMz4xSrdBY/ofhCulOsIZ6SJtwKXOQnurmo5pTU5a1g80Bi",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:06:51.558Z"
+  },
+  {
+    "id": "c506e0eb-f548-49b9-b8c8-f2d2c03921fd",
+    "username": "token_test_1791328011635",
+    "password": "$2b$10$y4bs3j.MWn3si7NlxtUscOetyg23PIBKIVaXeUD9heErK8B8G/zeC",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:06:51.699Z"
+  },
+  {
+    "id": "b5b0be87-f825-430b-99fc-100cb7b89abd",
+    "username": "current_user_1791328011771",
+    "password": "$2b$10$PE9Ms/fJBUcIarNa6zypXuZaw8J52dI.4zKvBJWOcUXLsT0kUI8GW",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:06:51.836Z"
+  },
+  {
+    "id": "6906ca0d-0341-46f2-8194-d775b2170347",
+    "username": "tutor_1791328022832",
+    "password": "$2b$10$K6pjmKgvUlDegTAj2J8HTOrkGRkEOPnb4LW/hy8YqT2QJojAv5sIG",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:02.907Z"
+  },
+  {
+    "id": "c7b34bce-814e-4ee6-b87c-3fb0a602d1f0",
+    "username": "login_test_1791328023041",
+    "password": "$2b$10$OtHe8ucNNbaQNp2hZ1Of6.0HIhxz992WgPUwjdtX4ISPiJpF9ZQaq",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:03.106Z"
+  },
+  {
+    "id": "2861bdbc-22bb-42e2-8463-9f446aa5f4a0",
+    "username": "token_test_1791328023183",
+    "password": "$2b$10$5SJX3ZICPBCntI8Mqze7/O95O4qwUNtBSbOjtV9J6.KlzEmgXTvGa",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:03.247Z"
+  },
+  {
+    "id": "e0ae43ea-e175-4ccf-815c-c10f1b2ae6ec",
+    "username": "current_user_1791328023319",
+    "password": "$2b$10$XqzWNHLNUQ0hG8i6jPJjJOBejeFkZdQbfO.M0RwwO4SKckbc2vSPq",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:03.382Z"
+  },
+  {
+    "id": "ba66b332-b627-47cf-9815-e562b7f9f9ce",
+    "username": "tutor_1791328047047",
+    "password": "$2b$10$DXIMI9zflh.yYDyztCyfMO5pSAmpdBFLd5xzNvB/oFmyU57FjWGvC",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:27.122Z"
+  },
+  {
+    "id": "b8bf6d20-6659-4a1b-8f39-3ef910bde72a",
+    "username": "login_test_1791328047263",
+    "password": "$2b$10$oyn.IyIc7iKkQ8aGWZDJFehG4JOyi5bPChEvIpC78TVf0cMtQpUZK",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:27.328Z"
+  },
+  {
+    "id": "cbb1b6c3-fec8-4114-b159-29cd050ddb6c",
+    "username": "token_test_1791328047406",
+    "password": "$2b$10$ZksXG6dgat.bREwitW0vOOCjEGxJq4YRDOlRCcRRu75OL2/SoBVq6",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:27.470Z"
+  },
+  {
+    "id": "d6d23aff-92e9-45b3-93f4-484a42b5c9e0",
+    "username": "current_user_1791328047542",
+    "password": "$2b$10$Tr5qBAWDIlKY/V39d4/jgespFi/DJ8rIJ5G.KPoyYtNNLg.g2N6se",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:27.604Z"
+  },
+  {
+    "id": "6951436a-d557-450c-ab7b-d8e6018bd6ec",
+    "username": "tutor_1791328077986",
+    "password": "$2b$10$TsyJ41Nnmb6r49NpyUT/8OxiirJu8WtOXObM9FNl5kkyLP48/obLy",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:58.059Z"
+  },
+  {
+    "id": "eb3b9067-d4fe-4a20-b0c0-73cade68e5e1",
+    "username": "login_test_1791328078193",
+    "password": "$2b$10$dfnX4N4udF/BEl2cNVFekulm7pYOzsX8aAb9MJ4WmiBXCE8y.9K8m",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:58.256Z"
+  },
+  {
+    "id": "5061c4c1-4e31-4593-8539-aa81309fe4e9",
+    "username": "token_test_1791328078331",
+    "password": "$2b$10$3zTNstgV.Pp2c/H4GJMcDu1IF9ul0ib9TMhW53ZJ.NhHosSaZmyp.",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:58.394Z"
+  },
+  {
+    "id": "bf328ce3-1eba-4fba-9420-c5725747bc25",
+    "username": "current_user_1791328078466",
+    "password": "$2b$10$LnMIotUWupCtp1Z5838ME.RrJO8CYviEWpADiCtVtGeEG1c5NMw3y",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:07:58.529Z"
+  },
+  {
+    "id": "58fb571c-fbf9-46ea-8b42-01e3fb7e98c3",
+    "username": "tutor_1791329600703",
+    "password": "$2b$10$yxyWyo4zAuf2clpfbQxAsujjZtvNI3/yy0PKII5m/2yndNusdlIVq",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:33:20.776Z"
+  },
+  {
+    "id": "27f6bd43-a2ef-445e-903e-e6a9b5bb8242",
+    "username": "login_test_1791329600908",
+    "password": "$2b$10$3IKP3tXS8ZPifkjT4Ou9qOXiKCflZy6jHgRiziuJO9ZdU9o4UMdiC",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:33:20.970Z"
+  },
+  {
+    "id": "fd8f71e5-88f0-4a2c-a1e7-5326e4ec12e6",
+    "username": "student_login_1791329601041",
+    "password": "$2b$10$lAVCtlQMl30tUrsIpuBULu6hAtFiT0Ymc0Ytk5xP/KidOppOsHYvC",
+    "role": "estudiante",
+    "createdAt": "2026-10-06T23:33:21.104Z"
+  },
+  {
+    "id": "34fa9c78-0c1e-47d7-ab00-bb06ed9cbfcf",
+    "username": "token_test_1791329601175",
+    "password": "$2b$10$uowBdKE2UWBZKngr.CGd6uAQ5RHGc7VsXD0ZnHKGKP/vArLi.Vb86",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:33:21.236Z"
+  },
+  {
+    "id": "a3615e25-5c7e-41c0-a8fe-6ef564911d9e",
+    "username": "current_user_1791329601309",
+    "password": "$2b$10$sSI6ZRuyrgPXsVPM7P0LDuLHKCmiF9nornBX4a4t2w.vbK6Rpdxwu",
+    "role": "docente",
+    "createdAt": "2026-10-06T23:33:21.370Z"
+  },
+  {
+    "id": "4029d2da-3511-4906-a228-a8c0b4317a6d",
+    "username": "tutor_1791333151283",
+    "password": "$2b$10$YZ3spiwReAcaRM53fTKwW.CJj0y5YtmRNUwYG3RmRHjWYWtvFJGdC",
+    "role": "docente",
+    "createdAt": "2026-10-07T00:32:31.358Z"
+  },
+  {
+    "id": "f4050717-9e2f-4ffd-aadb-46935bf5bfac",
+    "username": "login_test_1791333151491",
+    "password": "$2b$10$mwnCnvQs.KYD9GzZBBzIHuWlRXT/9MGbrdoXHKqC/YN./1S4gbM3.",
+    "role": "docente",
+    "createdAt": "2026-10-07T00:32:31.553Z"
+  },
+  {
+    "id": "b6cdf6a1-b72b-4c22-bf51-0f6947e7c895",
+    "username": "student_login_1791333151624",
+    "password": "$2b$10$vQ9nXQcHz8c2.erFWX6Pnuqu/eD5Rn5Ci/ZIx1XQudJZz6vNOAw1u",
+    "role": "estudiante",
+    "createdAt": "2026-10-07T00:32:31.687Z"
+  },
+  {
+    "id": "44dbfd05-1759-487c-8614-241f0f289255",
+    "username": "token_test_1791333151758",
+    "password": "$2b$10$LlrDzR.BgcoaqVT27OcEPOGcij2dbw0i/NnhnVi4Zht/l9FQrHH2q",
+    "role": "docente",
+    "createdAt": "2026-10-07T00:32:31.820Z"
+  },
+  {
+    "id": "e6a205a1-d6d9-4bb4-9b81-198907ff6d80",
+    "username": "current_user_1791333151900",
+    "password": "$2b$10$r5w2EGofjbNRH/vEF0GC.ezPUjIyMZjXajhMGaHwzTm41iHEQ/H46",
+    "role": "docente",
+    "createdAt": "2026-10-07T00:32:31.963Z"
+  }
+]
